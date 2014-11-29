@@ -123,12 +123,18 @@ describe("Game", function() {
       scorecard.recordRoll(6)
       scorecard.recordRoll(4)
       scorecard.recordRoll(5)
+      scorecard.recordRoll(3)
       expect(scorecard.frames[0].score).toBe(15)
-      expect(scorecard.totalScore()).toBe(20)
+      expect(scorecard.totalScore()).toBe(23)
     })
 
     it("will give the player a bonus equivalent to the number of pins hit in the next two rolls if the player scores a strike", function() {
-      
+      scorecard.startFrame()
+      scorecard.recordRoll(10)
+      scorecard.recordRoll(5)
+      scorecard.recordRoll(3)
+      expect(scorecard.frames[0].score).toBe(18)
+      expect(scorecard.totalScore()).toBe(26)
     })
 
   })

@@ -15,11 +15,18 @@ ScoreCard.prototype.startFrame = function() {
 }
 
 ScoreCard.prototype.recordRoll = function(pins_hit) {
+  
   this.frames[this.frames.length-1].rolls.push(pins_hit)
   this.frames[this.frames.length-1].score += pins_hit
 
   if (this.frames.length > 1) {
-    if (this.frames[this.frames.length-2].rolls.reduce(function(sum, n) { return sum + n }) === 10
+
+    if (this.frames[this.frames.length-2].rolls[0] === 10
+    && this.frames[this.frames.length-1].rolls.length < 3) {
+      this.frames[this.frames.length-2].score += pins_hit
+    }
+
+    else if (this.frames[this.frames.length-2].rolls.reduce(function(sum, n) { return sum + n }) === 10
     && this.frames[this.frames.length-1].rolls.length === 1) {
       this.frames[this.frames.length-2].score += pins_hit
     }
@@ -45,8 +52,3 @@ ScoreCard.prototype.recordRoll = function(pins_hit) {
     }
   }
 }
-
-
-
-
-
