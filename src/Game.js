@@ -1,28 +1,52 @@
-function Game(player, scorecard) {
-  this.player = player;
-  this.scoreCard = scorecard;
-  // this.scoreCard = scorecard;
-  // this.turn = this.player1;
-};
+function ScoreCard(player) {
+  this.player = player
+  this.frames = []
+  this.isFinished = false
+}
 
-// Game.prototype.switchTurns = function() {
-//   if (this.turn === this.player1) {
-//     this.turn = this.player2
-//   } else { this.turn = this.player1 };
-// };
+ScoreCard.prototype.totalScore = function() {
+  var total = 0
+  for (i = 0; i < this.frames.length; i++) {
+    var total = total + this.frames[i].score
+  } return total }
 
-Game.prototype.startFrame = function() {
-  if (this.scoreCard.length === 10) return null
-  this.scoreCard.shift(new Frame())
-};
+ScoreCard.prototype.startFrame = function() {
+  this.frames.push(new Frame())
+}
 
-Game.prototype.roll = function(frame, roll_number, pins_struck) {
-  frame[('roll' + roll_number)] = pins_struck;
-};
+ScoreCard.prototype.recordRoll = function(pins_hit) {
+  this.frames[this.frames.length-1].rolls.push(pins_hit)
+  this.frames[this.frames.length-1].score += pins_hit
 
-// function ScoreCard(player) {
-//   this.player = player;
-//   this.record = [];
-// };
+  if (this.frames.length > 1) {
+    if (this.frames[this.frames.length-2].rolls.reduce(function(sum, n) { return sum + n }) === 10
+    && this.frames[this.frames.length-1].rolls.length === 1) {
+      this.frames[this.frames.length-2].score += pins_hit
+    }
+  }
+
+  if (this.frames.length < 10) {
+    if (this.frames[this.frames.length-1].rolls.length === 2
+    || pins_hit === 10) {
+      this.frames.push(new Frame())
+    }
+  }
+
+  if (this.frames.length === 10) {
+    if ((this.frames[9].rolls.reduce(function(sum, n) { return sum + n })) >= 10
+    && this.frames[9].rolls.length < 3) {
+      return
+    }
+    else if (this.frames[9].rolls.length < 2) {
+      return
+    }
+    else {
+      this.isFinished = true
+    }
+  }
+}
+
+
+
 
 
