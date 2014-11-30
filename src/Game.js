@@ -16,9 +16,7 @@ ScoreCard.prototype.startFrame = function() {
 
 ScoreCard.prototype.recordRoll = function(pins_hit) {
 
-  // if (frames.length < 1) {
-  //   this.startFrame()
-  // }
+  if (this.frames.length === 0) { this.startFrame() }
 
   var currentFrame = this.frames[this.frames.length-1]
   var previousFrame = this.frames[this.frames.length-2]
@@ -27,35 +25,22 @@ ScoreCard.prototype.recordRoll = function(pins_hit) {
   currentFrame.score += pins_hit
 
   if (this.frames.length > 1) {
-
-    if (previousFrame.rolls[0] === 10
-    && currentFrame.rolls.length < 3) {
-      previousFrame.score += pins_hit
-    }
-
+    if (previousFrame.rolls[0] === 10 && currentFrame.rolls.length < 3) {
+      previousFrame.score += pins_hit }
     else if (previousFrame.rolls.reduce(function(sum, n) { return sum + n }) === 10
     && currentFrame.rolls.length === 1) {
-      previousFrame.score += pins_hit
-    }
+      previousFrame.score += pins_hit }
+  }
+
+  if (this.frames.length === 10 && currentFrame.rolls.length > 1) {
+    if (currentFrame.rolls.reduce(function(sum, n) { return sum + n }) >= 10 
+    && currentFrame.rolls.length < 3) { return }
+    else { this.isFinished = true }
   }
 
   if (this.frames.length < 10) {
-    if (currentFrame.rolls.length === 2
-    || pins_hit === 10) {
-      this.startFrame()
-    }
+    if (currentFrame.rolls.length === 2 || pins_hit === 10) {
+      this.startFrame() }
   }
 
-  if (this.frames.length === 10) {
-    if ((currentFrame.rolls.reduce(function(sum, n) { return sum + n })) >= 10
-    && currentFrame.rolls.length < 3) {
-      return
-    }
-    else if (currentFrame.rolls.length < 2) {
-      return
-    }
-    else {
-      this.isFinished = true
-    }
-  }
 }
