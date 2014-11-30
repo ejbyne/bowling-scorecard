@@ -15,7 +15,7 @@ ScoreCard.prototype.enterRoll = function(pinsHit) {
 ScoreCard.prototype.recordRoll = function(pinsHit) {
   if (this.frames.length === 0) { this.startFrame() }
   this.currentFrame().rolls.push(pinsHit)
-  this.currentFrame().score += pinsHit
+  this.currentFrame().score = parseInt(this.currentFrame().score) + parseInt(pinsHit)
 }
 
 ScoreCard.prototype.startFrame = function() {
@@ -37,7 +37,7 @@ ScoreCard.prototype.beforePreviousFrame = function() {
 ScoreCard.prototype.totalScore = function() {
   var total = 0
   for (i = 0; i < this.frames.length; i++) {
-    var total = total + this.frames[i].score } return total
+    var total = parseInt(total) + parseInt(this.frames[i].score) } return total
 }
 
 ScoreCard.prototype.checkBonus = function(pinsHit) {
@@ -48,13 +48,13 @@ ScoreCard.prototype.checkBonus = function(pinsHit) {
 }
 
 ScoreCard.prototype.addStrikeBonus = function(pinsHit) {
-  this.previousFrame().score += pinsHit
+  this.previousFrame().score = parseInt(this.previousFrame().score) + parseInt(pinsHit)
   if (this.frames.length > 2 && this.beforePreviousFrame().rolls[0] === 10 && this.currentFrame().rolls.length < 2) {
-    this.beforePreviousFrame().score += pinsHit }
+    this.beforePreviousFrame().score = parseInt(this.beforePreviousFrame().score) + parseInt(pinsHit) }
 }
 
 ScoreCard.prototype.addSpareBonus = function(pinsHit) {
-  this.previousFrame().score += pinsHit
+  this.previousFrame().score = parseInt(this.previousFrame().score) + parseInt(pinsHit)
 }
 
 ScoreCard.prototype.checkIfFinished = function() {
@@ -67,7 +67,7 @@ ScoreCard.prototype.checkIfFinished = function() {
 
 ScoreCard.prototype.checkIfNewFrame = function(pinsHit) {
   if (this.frames.length < 10) {
-    if (this.currentFrame().rolls.length === 2 || pinsHit === 10) {
+    if (pinsHit === 10 || this.currentFrame().rolls.length === 2) {
       this.startFrame() }
   }  
 }

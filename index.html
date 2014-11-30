@@ -1,0 +1,76 @@
+<!doctype>
+<html>
+  <head>
+    <title>Bowling Scorecard</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+
+  <body>
+
+    <h1>Bowling Scorecard</h1>
+
+    <form>
+      <input type="text" id="enter_roll" placeholder="Please enter number of pins hit">
+      <input type="submit" id="submit" value="Enter">
+    </form>
+
+    <section id="frames">
+    </section>
+
+ <!--    <table id="total_score">
+      <tr>
+        <th>Total score</th>
+      </tr>
+    </table> -->
+
+    <template id="list-scores-template">
+      <table>
+      {{ message }}
+      </table>
+    </template>
+
+    <script src='src/Player.js'></script>
+    <script src='src/Frame.js'></script>
+    <script src='src/ScoreCard.js'></script>
+    <script src='http://code.jquery.com/jquery-2.1.1.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js'></script>
+    <script>
+
+      $(document).ready(function(){
+
+        var player = new Player('Ed');
+        var scorecard = new ScoreCard(player);
+
+        var printData = function(scorecard) {
+          var data = '<tr><th>Frame</th><th>Roll</th><th>Pins</th><th>Frame score</th><th>Total score</th></tr>';
+          for (var f = 0; f < scorecard.frames.length; f++) {
+            for (var r = 0; r < scorecard.frames[f].rolls.length; r++) {
+              var data = data + ('<tr><td>' + (f + 1) + '</td><td>' + (r + 1) + '</td><td>' + (scorecard.frames[f].rolls[r]) + '</td><td>' + (scorecard.frames[f].score) + '</td><td>' + (scorecard.totalScore()) + '</td></tr>')
+            }
+          }
+        }
+
+        var tableData = printData(scorecard)
+
+        var render = function(tableData){
+          var html = $('#list-scores.template').html()
+          var data = { message: tableData }
+          return Mustache.render(html, data)
+        }
+
+        $('#submit').on('click', function(event, tableData) {
+          event.preventDefault();
+          var pin_entry = $('#enter_roll').val();
+          scorecard.enterRoll(pin_entry);
+          console.log(tableData);
+          
+          $('#frames').html(render(tableData))
+        })
+
+      })
+
+    </script>
+
+  </body>
+
+</html>
