@@ -16,17 +16,23 @@ ScoreCard.prototype.startFrame = function() {
 
 ScoreCard.prototype.recordRoll = function(pins_hit) {
 
+  if (this.isFinished) { return "Game over" }
+
   if (this.frames.length === 0) { this.startFrame() }
 
   var currentFrame = this.frames[this.frames.length-1]
   var previousFrame = this.frames[this.frames.length-2]
+  var beforePreviousFrame = this.frames[this.frames.length-3]
   
   currentFrame.rolls.push(pins_hit)
   currentFrame.score += pins_hit
 
   if (this.frames.length > 1) {
     if (previousFrame.rolls[0] === 10 && currentFrame.rolls.length < 3) {
-      previousFrame.score += pins_hit }
+      previousFrame.score += pins_hit
+      if (this.frames.length > 2 && beforePreviousFrame.rolls[0] === 10 && currentFrame.rolls.length < 2) {
+        beforePreviousFrame.score += pins_hit }
+    }
     else if (previousFrame.rolls.reduce(function(sum, n) { return sum + n }) === 10
     && currentFrame.rolls.length === 1) {
       previousFrame.score += pins_hit }

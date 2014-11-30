@@ -2,6 +2,11 @@ describe("Game", function() {
 
   var player, scorecard;
 
+  var completeNineFrames = function() {
+    for (i = 1; i <= 18; i++) {
+    scorecard.recordRoll(1) }
+  }
+
   beforeEach(function() {
 
     player = new Player("Ed");
@@ -52,9 +57,7 @@ describe("Game", function() {
   describe("knowing when the game is finished", function() {
 
     it("will know the game is finished after 10 frames", function() {
-      for (i = 1; i <= 18; i++) {
-        scorecard.recordRoll(1)
-      }
+      completeNineFrames()
       expect(scorecard.isFinished).toBe(false)
       scorecard.recordRoll(2)
       scorecard.recordRoll(3)
@@ -62,25 +65,28 @@ describe("Game", function() {
     })
 
     it("will allow three rolls in the final frame if there is a strike", function() {
-      for (i = 1; i <= 18; i++) {
-        scorecard.recordRoll(1)
-      }
+      completeNineFrames()
       scorecard.recordRoll(10)
       scorecard.recordRoll(8)
       expect(scorecard.isFinished).toBe(false)
-      scorecard.recordRoll(10)
+      scorecard.recordRoll(8)
       expect(scorecard.isFinished).toBe(true)
     })
 
     it("will allow three rolls in the final frame if there is a spare", function() {
-      for (i = 1; i <= 18; i++) {
-        scorecard.recordRoll(1)
-      }
+      completeNineFrames()
       scorecard.recordRoll(6)
       scorecard.recordRoll(4)
       expect(scorecard.isFinished).toBe(false)
       scorecard.recordRoll(4)
       expect(scorecard.isFinished).toBe(true)
+    })
+
+    it("will not allow another roll if the game is finished", function() {
+      completeNineFrames()
+      scorecard.recordRoll(1)
+      scorecard.recordRoll(1)
+      expect(scorecard.recordRoll(1)).toEqual("Game over")
     })
 
   })
