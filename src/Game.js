@@ -15,36 +15,43 @@ ScoreCard.prototype.startFrame = function() {
 }
 
 ScoreCard.prototype.recordRoll = function(pins_hit) {
+
+  // if (frames.length < 1) {
+  //   this.startFrame()
+  // }
+
+  var currentFrame = this.frames[this.frames.length-1]
+  var previousFrame = this.frames[this.frames.length-2]
   
-  this.frames[this.frames.length-1].rolls.push(pins_hit)
-  this.frames[this.frames.length-1].score += pins_hit
+  currentFrame.rolls.push(pins_hit)
+  currentFrame.score += pins_hit
 
   if (this.frames.length > 1) {
 
-    if (this.frames[this.frames.length-2].rolls[0] === 10
-    && this.frames[this.frames.length-1].rolls.length < 3) {
-      this.frames[this.frames.length-2].score += pins_hit
+    if (previousFrame.rolls[0] === 10
+    && currentFrame.rolls.length < 3) {
+      previousFrame.score += pins_hit
     }
 
-    else if (this.frames[this.frames.length-2].rolls.reduce(function(sum, n) { return sum + n }) === 10
-    && this.frames[this.frames.length-1].rolls.length === 1) {
-      this.frames[this.frames.length-2].score += pins_hit
+    else if (previousFrame.rolls.reduce(function(sum, n) { return sum + n }) === 10
+    && currentFrame.rolls.length === 1) {
+      previousFrame.score += pins_hit
     }
   }
 
   if (this.frames.length < 10) {
-    if (this.frames[this.frames.length-1].rolls.length === 2
+    if (currentFrame.rolls.length === 2
     || pins_hit === 10) {
-      this.frames.push(new Frame())
+      this.startFrame()
     }
   }
 
   if (this.frames.length === 10) {
-    if ((this.frames[9].rolls.reduce(function(sum, n) { return sum + n })) >= 10
-    && this.frames[9].rolls.length < 3) {
+    if ((currentFrame.rolls.reduce(function(sum, n) { return sum + n })) >= 10
+    && currentFrame.rolls.length < 3) {
       return
     }
-    else if (this.frames[9].rolls.length < 2) {
+    else if (currentFrame.rolls.length < 2) {
       return
     }
     else {

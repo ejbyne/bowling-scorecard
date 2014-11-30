@@ -137,6 +137,14 @@ describe("Game", function() {
       expect(scorecard.totalScore()).toBe(26)
     })
 
+    // it("will allow a maximum score of 300", function() {
+    //   scorecard.startFrame()
+    //   for (i = 1; i <= 10; i++) {
+    //     scorecard.recordRoll(10)
+    //   }
+    //   expect(scorecard.totalScore()).toBe(300)
+    // })
+
   })
 
 })
