@@ -109,6 +109,18 @@ describe("ScoreCard", function() {
       expect(scorecard.enterRoll(1)).toEqual("Game over")
     })
 
+    it("will know if there was a gutter game", function(){
+      for (i = 1; i <= 20; i++) {
+        scorecard.enterRoll(0) }
+      expect(scorecard.gutterGame()).toBe(true)
+    })
+
+    it("will know if there was a perfect game", function(){
+      for (i = 1; i <= 12; i++) {
+        scorecard.enterRoll(10) }
+      expect(scorecard.perfectGame()).toBe(true)
+    })
+
   })
 
   describe("keeping score", function() {
