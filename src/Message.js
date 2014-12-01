@@ -1,4 +1,4 @@
-var Message = function(el) {
+function Message(el) {
   this.el = $(el);
   return this;
 }
@@ -32,7 +32,7 @@ Message.prototype.printData = function(scorecard) {
   return data;
 }
 
-Message.prototype.gameMessage = function(scorecard) {
+Message.prototype.printGameMessage = function(scorecard) {
   if(scorecard.isFinished() === false) {
     if(scorecard.currentFrame().rolls[0] === 10) {
       return "Strike!" }

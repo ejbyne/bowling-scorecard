@@ -21,13 +21,14 @@ $(document).ready(function(){
 
     $('#selection li').mouseleave(function() {
       $(this).fadeTo('fast', 0.8) })
-    
+
     $('#selection li').on('click', function(event) {
       event.preventDefault();
       var rollEntry = parseInt($(this).data('pick'));
       scorecard.enterRoll(rollEntry);
       gameStatus.addText(gameStatus.printGameStatus(scorecard))
       tableData.addText(tableData.printData(scorecard))
+      gameMessage.addText(gameMessage.printGameMessage(scorecard))
     })
 
   })
