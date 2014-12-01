@@ -3,13 +3,14 @@ $(document).ready(function(){
   $('#name_submit').on('click', function(event) {
     event.preventDefault();
     $('#enter_name_form').css("display", "none");
-    $('#enter_roll_form').show();
     $('#selection').css("display", "inline-block");
     
     var name = $('#enter_name').val();
     var player = new Player(name);
     var scorecard = new ScoreCard(player);
-    $('h1').html(name + "'s Bowling Scorecard")
+    $('#welcome_message').html(name + "'s Bowling Scorecard")
+    $('#game_status').html('Frame 1 Roll 1')
+    $('#pin_request').html('Please enter pins hit:')
     
     var printData = function(scorecard) {
       var data = '<tr><th>Frame</th><th>Roll</th><th>Pins</th><th>Frame score</th><th>Total score</th></tr>';
@@ -25,19 +26,36 @@ $(document).ready(function(){
       return data;
     }
 
-    $('.numbers').mouseenter(function() {
+    var printGameStatus = function(scorecard) {
+      if (scorecard.isFinished()) { return 'Game Over' }
+      else {
+        var data = 'Frame '
+        if (scorecard.currentFrame().rolls.length === 2 && scorecard.frames.length < 10) {
+          var frame = parseInt(scorecard.frames.length + 1)
+          var roll = 1
+        } else {
+          var  frame = scorecard.frames.length
+          var roll = parseInt(scorecard.currentFrame().rolls.length + 1)
+        }
+        return data = data + frame + ' Roll ' + roll
+      }
+    }
+
+    $('#selection li').mouseenter(function() {
       $(this).fadeTo('fast', 1)
     })
 
-    $('.numbers').mouseleave(function() {
-      $(this).fadeTo('fast', 0.5)
+    $('#selection li').mouseleave(function() {
+      $(this).fadeTo('fast', 0.8)
     })
 
-    $('#roll_submit').on('click', function(event) {
+    $('#selection li').on('click', function(event) {
       event.preventDefault();
-      var rollEntry = parseInt($('#enter_roll').val());
+      var rollEntry = parseInt($(this).data('pick'));
       scorecard.enterRoll(rollEntry);
       var tableData = printData(scorecard);
+      var gameStatus = printGameStatus(scorecard);
+      $('#game_status').html(gameStatus);
       $('#frames').html(tableData);
 
       if(scorecard.isFinished() === false) {
@@ -49,11 +67,11 @@ $(document).ready(function(){
       }
 
       if(scorecard.isFinished()) {
-        $('#messages').html('<p>Game Over</p>');
         if(scorecard.gutterGame()) {
-          $('<p>Gutter Game!</p>').appendTo('#messages'); }
-        if(scorecard.perfectGame()) {
-          $('<p>Perfect Game!</p>').appendTo('#messages'); }
+          $('#messages').html('Gutter Game!') }
+        else if(scorecard.perfectGame()) {
+          $('#messages').html('Perfect Game!') }
+        else { $('#messages').html('Nice Try!') }
       }
     })
   })

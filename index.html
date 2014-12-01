@@ -7,52 +7,50 @@
 
   <body>
 
-    <header>
-      <h1>
-        Please enter your name to start your Bowling Scorecard
-      </h1>
-    </header>
+    <div id="wrapper">
 
-    <form id="enter_name_form">
-      Please enter your name:<input type="text" id="enter_name">
-      <input type="submit" id="name_submit" value="Enter name">
-    </form>
+      <header>
+        <h1 id="welcome_message">Welcome to Bowling Scorecard</h1>
+        <h2 id="game_status"></h2>
+        <p id="pin_request"></p>
+        <form id="enter_name_form">
+          Please enter your name: <input type="text" id="enter_name">
+          <input type="submit" id="name_submit" value="Enter name">
+        </form>
+      </header>
 
-    <form id="enter_roll_form">
-      Please enter pins hit:<input type="text" id="enter_roll">
-      <input type="submit" id="roll_submit" value="Enter pins">
-    </form>
+      <section id="selection">
+        <ul>
+          <li data-pick="0">0</li>
+          <li data-pick="1">1</li>
+          <li data-pick="2">2</li>
+          <li data-pick="3">3</li>
+          <li data-pick="4">4</li>
+          <li data-pick="5">5</li>
+          <li data-pick="6">6</li>
+          <li data-pick="7">7</li>
+          <li data-pick="8">8</li>
+          <li data-pick="9">9</li>
+          <li data-pick="10">10</li>
+        </ul>
+      </section>
 
-    <section id="selection">
-      <ul>
-        <li class="numbers" data-pick="1">1</li>
-        <li class="numbers" data-pick="2">2</li>
-        <li class="numbers" data-pick="3">3</li>
-        <li class="numbers" data-pick="4">4</li>
-        <li class="numbers" data-pick="5">5</li>
-        <li class="numbers" data-pick="6">6</li>
-        <li class="numbers" data-pick="7">7</li>
-        <li class="numbers" data-pick="8">8</li>
-        <li class="numbers" data-pick="9">9</li>
-        <li class="numbers" data-pick="10">10</li>
-      </ul>
-    </section>
+      <section id="message_box">
+        <h2 id="messages"></h2>
+      </section>
 
-    <article>
-      <table id="frames">
-      </table>
-    <article>
+      <article id="table">
+        <table id="frames">
+        </table>
+      <article>
 
-    <section>
-      <h2 id="messages"></h2>
-    </section>
+      <script src='src/Player.js'></script>
+      <script src='src/Frame.js'></script>
+      <script src='src/ScoreCard.js'></script>
+      <script src='http://code.jquery.com/jquery-2.1.1.min.js'></script>
+      <script src='src/App.js'></script>
 
-
-    <script src='src/Player.js'></script>
-    <script src='src/Frame.js'></script>
-    <script src='src/ScoreCard.js'></script>
-    <script src='http://code.jquery.com/jquery-2.1.1.min.js'></script>
-    <script src='src/App.js'></script>
+    </div>
 
   </body>
 

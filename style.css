@@ -1,40 +1,86 @@
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Helvetica Neue';
+  text-decoration: none;
 }
 
-#enter_roll_form {
-  display: none;
+#wrapper {
+  padding-top: 10px;
+  background-image: url('bowling.jpeg');
+  background-size: 100% 100%;
+  height: 750px;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+header {
+  width: 600px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  border: 2px solid #c0392b;
+  background-color: #e74c3c;
+  color: #FFFFFF;
+  opacity: 0.8;
+  padding-top: none;
+  padding-bottom: 20px;
+}
+
+#table {
+  position: absolute;
+  top: 230px;
+  left: 50%;
+  margin-left: -260px;
 }
 
 #frames {
   border: solid black;
   padding: 20px;
   border-collapse: collapse;
+  background-color: rgba(255, 255, 255, .5);
+  margin-top: 20px;
 }
 
 td, th {
+  font-size: 12px;
   width: 100px;
   border: 1px solid black;
   text-align: center;
 }
 
 tr {
-  height: 30px;
+  height: 20px;
 }
 
 #selection {
+  width: 600px;
+  height: 80px;
   display: none;
+  margin-left: -40px;
+  top: 180px;
+  text-align: center;
 }
 
-.numbers {
+#selection li {
+  position: relative;
   display: inline-block;
   border-radius: 10px;
-  border: 2px solid #6495ED;
-  background-color: #BCD2EE;
+  border: 2px solid #c0392b;
+  background-color: #e74c3c;
   width: 30px;
-  color: #6495ED;
+  color: #FFFFFF;
   list-style-type: none;
   padding: 5px;
-  opacity: 0.5;
+  opacity: 0.8;
   text-align: center;
+  cursor: pointer;
+}
+
+#message_box {
+  position: relative;
+  float: left;
+  top: -60px;
+  left: 60px;
 }
