@@ -37,11 +37,15 @@ describe("ScoreCard", function() {
     it("will start a new frame if there have been two rolls in the current frame", function() {
       scorecard.enterRoll(5)
       scorecard.enterRoll(3)
+      expect(scorecard.frames.length).toBe(1)
+      scorecard.enterRoll(3)
       expect(scorecard.frames.length).toBe(2)
     })
 
     it("will start a new frame if there is a strike in the first roll of a frame", function() {
       scorecard.enterRoll(10)
+      expect(scorecard.frames.length).toBe(1)
+      scorecard.enterRoll(5)
       expect(scorecard.frames.length).toBe(2)
     })
 
@@ -58,28 +62,28 @@ describe("ScoreCard", function() {
 
     it("will know the game is finished after 10 frames", function() {
       completeNineFrames()
-      expect(scorecard.isFinished).toBe(false)
+      expect(scorecard.isFinished()).toBe(false)
       scorecard.enterRoll(2)
       scorecard.enterRoll(3)
-      expect(scorecard.isFinished).toBe(true)
+      expect(scorecard.isFinished()).toBe(true)
     })
 
     it("will allow three rolls in the final frame if there is a strike", function() {
       completeNineFrames()
       scorecard.enterRoll(10)
       scorecard.enterRoll(8)
-      expect(scorecard.isFinished).toBe(false)
+      expect(scorecard.isFinished()).toBe(false)
       scorecard.enterRoll(8)
-      expect(scorecard.isFinished).toBe(true)
+      expect(scorecard.isFinished()).toBe(true)
     })
 
     it("will allow three rolls in the final frame if there is a spare", function() {
       completeNineFrames()
       scorecard.enterRoll(6)
       scorecard.enterRoll(4)
-      expect(scorecard.isFinished).toBe(false)
+      expect(scorecard.isFinished()).toBe(false)
       scorecard.enterRoll(4)
-      expect(scorecard.isFinished).toBe(true)
+      expect(scorecard.isFinished()).toBe(true)
     })
 
     it("will not allow another roll if the game is finished", function() {
@@ -132,7 +136,7 @@ describe("ScoreCard", function() {
       for (i = 1; i <= 12; i++) {
         scorecard.enterRoll(10)
       }
-      expect(scorecard.isFinished).toBe(true)
+      expect(scorecard.isFinished()).toBe(true)
       expect(scorecard.totalScore()).toBe(300)
     })
 

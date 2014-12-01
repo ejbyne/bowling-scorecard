@@ -1,19 +1,23 @@
 function ScoreCard(player) {
   this.player = player
   this.frames = []
-  this.isFinished = false
 }
 
 ScoreCard.prototype.enterRoll = function(pinsHit) {
-  if (this.isFinished) { return "Game over" }
+  if (this.isFinished()) { return "Game over" }
+  this.checkIfNewFrame()
   this.recordRoll(pinsHit)
   if (this.frames.length > 1) { this.checkBonus(pinsHit) }
-  this.checkIfFinished()
-  this.checkIfNewFrame(pinsHit)
+}
+
+ScoreCard.prototype.checkIfNewFrame = function() {
+  if (this.frames.length === 0) {
+    this.startFrame() }
+  else if (this.frames.length < 10 && (this.currentFrame().rolls[0] === 10 || this.currentFrame().rolls.length === 2)) {
+    this.startFrame() }
 }
 
 ScoreCard.prototype.recordRoll = function(pinsHit) {
-  if (this.frames.length === 0) { this.startFrame() }
   this.currentFrame().rolls.push(pinsHit)
   this.currentFrame().score = parseInt(this.currentFrame().score) + parseInt(pinsHit)
 }
@@ -57,17 +61,11 @@ ScoreCard.prototype.addSpareBonus = function(pinsHit) {
   this.previousFrame().score = parseInt(this.previousFrame().score) + parseInt(pinsHit)
 }
 
-ScoreCard.prototype.checkIfFinished = function() {
+ScoreCard.prototype.isFinished = function() {
+  if (this.frames.length < 10) { return false }
   if (this.frames.length === 10 && this.currentFrame().rolls.length > 1) {
     if (this.currentFrame().rolls.reduce(function(sum, n) { return sum + n }) >= 10 
-    && this.currentFrame().rolls.length < 3) { return }
-    else { this.isFinished = true }
+    && this.currentFrame().rolls.length < 3) { return false }
+    else { return true }
   }
-}
-
-ScoreCard.prototype.checkIfNewFrame = function(pinsHit) {
-  if (this.frames.length < 10) {
-    if (pinsHit === 10 || this.currentFrame().rolls.length === 2) {
-      this.startFrame() }
-  }  
 }
