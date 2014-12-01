@@ -21,3 +21,20 @@ td, th {
 tr {
   height: 30px;
 }
+
+#selection {
+  display: none;
+}
+
+.numbers {
+  display: inline-block;
+  border-radius: 10px;
+  border: 2px solid #6495ED;
+  background-color: #BCD2EE;
+  width: 30px;
+  color: #6495ED;
+  list-style-type: none;
+  padding: 5px;
+  opacity: 0.5;
+  text-align: center;
+}

@@ -4,6 +4,7 @@ $(document).ready(function(){
     event.preventDefault();
     $('#enter_name_form').css("display", "none");
     $('#enter_roll_form').show();
+    $('#selection').css("display", "inline-block");
     
     var name = $('#enter_name').val();
     var player = new Player(name);
@@ -23,6 +24,14 @@ $(document).ready(function(){
       }
       return data;
     }
+
+    $('.numbers').mouseenter(function() {
+      $(this).fadeTo('fast', 1)
+    })
+
+    $('.numbers').mouseleave(function() {
+      $(this).fadeTo('fast', 0.5)
+    })
 
     $('#roll_submit').on('click', function(event) {
       event.preventDefault();
