@@ -17,8 +17,8 @@ describe("ScoreCard", function() {
   describe("starting a frame", function() {
 
     it("will add a frame to the player's scorecard", function() {
-      scorecard.startFrame();
-      expect(scorecard.frames.length).toBe(1);
+      scorecard.startFrame()
+      expect(scorecard.frames.length).toBe(1)
     })
 
   })
@@ -26,8 +26,23 @@ describe("ScoreCard", function() {
   describe("recording results", function() {
 
     it("will record the number of pins hit by a roll", function(){
-      scorecard.enterRoll(5);
-      expect(scorecard.frames[0].rolls[0]).toBe(5);
+      scorecard.enterRoll(5)
+      expect(scorecard.frames[0].rolls[0]).toBe(5)
+    })
+
+    it("will not accept a number less than zero or more than 10", function() {
+      scorecard.enterRoll(5)
+      scorecard.enterRoll(-1)
+      scorecard.enterRoll(11)
+      expect(scorecard.currentFrame().score).toBe(5)
+    })
+
+    it("wil not accept a roll if the game is finished", function() {
+      completeNineFrames()
+      scorecard.enterRoll(5)
+      scorecard.enterRoll(4)
+      scorecard.enterRoll(4)
+      expect(scorecard.currentFrame().score).toBe(9)
     })
 
   })
@@ -64,6 +79,7 @@ describe("ScoreCard", function() {
       completeNineFrames()
       expect(scorecard.isFinished()).toBe(false)
       scorecard.enterRoll(2)
+      expect(scorecard.isFinished()).toBe(false)
       scorecard.enterRoll(3)
       expect(scorecard.isFinished()).toBe(true)
     })

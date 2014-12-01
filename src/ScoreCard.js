@@ -4,6 +4,7 @@ function ScoreCard(player) {
 }
 
 ScoreCard.prototype.enterRoll = function(pinsHit) {
+  if (pinsHit < 0 || pinsHit > 10) { return "Incorrect number" }
   if (this.isFinished()) { return "Game over" }
   this.checkIfNewFrame()
   this.recordRoll(pinsHit)
@@ -47,7 +48,7 @@ ScoreCard.prototype.totalScore = function() {
 ScoreCard.prototype.checkBonus = function(pinsHit) {
   if (this.previousFrame().rolls[0] === 10 && this.currentFrame().rolls.length < 3) {
     this.addStrikeBonus(pinsHit) }
-  else if (this.previousFrame().rolls.reduce(function(sum, n) { return sum + n }) === 10 && this.currentFrame().rolls.length === 1) {
+  else if (this.previousFrame().score === 10 && this.currentFrame().rolls.length === 1) {
     this.addSpareBonus(pinsHit) }
 }
 
@@ -62,10 +63,19 @@ ScoreCard.prototype.addSpareBonus = function(pinsHit) {
 }
 
 ScoreCard.prototype.isFinished = function() {
-  if (this.frames.length < 10) { return false }
-  if (this.frames.length === 10 && this.currentFrame().rolls.length > 1) {
-    if (this.currentFrame().rolls.reduce(function(sum, n) { return sum + n }) >= 10 
-    && this.currentFrame().rolls.length < 3) { return false }
+  if (this.frames.length === 10) {
+    if (this.currentFrame().rolls.length === 1 ) { return false }
+    else if (this.currentFrame().score >= 10 && this.currentFrame().rolls.length < 3) { return false }
     else { return true }
-  }
+  } else { return false }
+}
+
+ScoreCard.prototype.gutterGame = function() {
+  if (this.isFinished() && this.totalScore() === 0)
+    { return true } else { return false }
+}
+
+ScoreCard.prototype.perfectGame = function() {
+  if (this.isFinished() && this.totalScore() === 300)
+  { return true } else { return false }
 }

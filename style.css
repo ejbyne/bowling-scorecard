@@ -1,0 +1,23 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#enter_roll_form {
+  display: none;
+}
+
+#frames {
+  border: solid black;
+  padding: 20px;
+  border-collapse: collapse;
+}
+
+td, th {
+  width: 100px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+tr {
+  height: 30px;
+}
