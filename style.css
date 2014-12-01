@@ -28,6 +28,10 @@ header {
   padding-bottom: 20px;
 }
 
+#pin_request {
+  display: none;
+}
+
 #table {
   position: absolute;
   top: 230px;
