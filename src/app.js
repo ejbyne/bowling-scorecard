@@ -6,6 +6,8 @@ $(document).ready(function(){
   var tableData = new Message('#frames')
   var gameMessage = new Message('#messages')
 
+  $('header').animate({top: '+=200px'}, 2000);
+
   $('#name_submit').on('click', function(event) {
     event.preventDefault()
     var name = $('#enter_name').val()
@@ -21,7 +23,6 @@ $(document).ready(function(){
     $(this).css("opacity", 1) })
   $('#list li').mouseleave(function() {
     $(this).css("opacity", 0.8) })
-
   $('#list li').on('click', function(event) {
     event.preventDefault()
     var rollEntry = parseInt($(this).data('pick'))
@@ -45,7 +46,7 @@ $(document).ready(function(){
 
     gameStatus.addText(gameStatus.printGameStatus(scorecard))
     tableData.addText(tableData.printData(scorecard))
-    gameMessage.addText(gameMessage.printGameMessage(scorecard))
+    gameMessage.addGameMessage(gameMessage.printGameMessage(scorecard))
   })
 
 })

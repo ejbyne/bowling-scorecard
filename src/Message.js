@@ -50,5 +50,9 @@ Message.prototype.printGameMessage = function(scorecard) {
 }
 
 Message.prototype.addText = function(message) {
-  (this.el).html(message);
+  (this.el).html(message).fadeIn(1000)
+}
+
+Message.prototype.addGameMessage = function(message) {
+  (this.el).html(message).show('slide', 1000).hide('slide', 1000)
 }
