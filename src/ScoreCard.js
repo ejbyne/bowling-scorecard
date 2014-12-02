@@ -4,9 +4,9 @@ function ScoreCard(player) {
 }
 
 ScoreCard.prototype.enterRoll = function(pinsHit) {
-  if (pinsHit < 0 || pinsHit > 10) { return "Incorrect number" }
   if (this.isFinished()) { return "Game over" }
   this.checkIfNewFrame()
+  if (pinsHit < 0 || (this.currentFrame().rolls.length === 1 && this.currentFrame().rolls[0] < 10 && pinsHit > (10 - this.currentFrame().score))) { return "Incorrect number" }
   this.recordRoll(pinsHit)
   if (this.frames.length > 1) { this.checkBonus(pinsHit) }
 }

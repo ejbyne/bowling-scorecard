@@ -1,16 +1,16 @@
 describe("Message", function() {
 
-  var container;
+  var container
 
   beforeEach(function() {
-    container = $("<div></div>");
-  });
+    container = $("<div></div>")
+  })
 
   it('displays html messages', function() {
-    var message = new Message(container);
-    message.addText('Test Message');
-    expect(container.html()).toMatch(/Test Message/);
-  });
+    var message = new Message(container)
+    message.addText('Test Message')
+    expect(container.html()).toMatch(/Test Message/)
+  })
 
-});
+})
 

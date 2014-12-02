@@ -67,7 +67,7 @@ tr {
   text-align: center;
 }
 
-#selection li {
+#list li {
   position: relative;
   display: inline-block;
   border-radius: 10px;

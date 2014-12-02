@@ -1,6 +1,6 @@
 describe("ScoreCard", function() {
 
-  var player, scorecard;
+  var player, scorecard
 
   var completeNineFrames = function() {
     for (i = 1; i <= 18; i++) {
@@ -8,11 +8,9 @@ describe("ScoreCard", function() {
   }
 
   beforeEach(function() {
-
-    player = new Player("Ed");
-    scorecard = new ScoreCard(player);
-
-  });
+    player = new Player()
+    scorecard = new ScoreCard(player)
+  })
 
   describe("starting a frame", function() {
 
