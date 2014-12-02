@@ -29,7 +29,7 @@ Message.prototype.printData = function(scorecard) {
       var data = data + ('<tr><td>' + (frame + 1) + '</td><td>' + (roll + 1) + '</td><td>' + (scorecard.frames[frame].rolls[roll]) + '</td><td>' + frameScore + '</td><td>' + totalScore + '</td></tr>');
     }
   }
-  return data;
+  return data
 }
 
 Message.prototype.printGameMessage = function(scorecard) {
@@ -53,6 +53,10 @@ Message.prototype.addText = function(message) {
   (this.el).html(message).fadeIn(1000)
 }
 
-Message.prototype.addGameMessage = function(message) {
-  (this.el).html(message).show('slide', 1000).hide('slide', 1000)
+Message.prototype.addGameMessage = function(scorecard, message) {
+  if (message != "") {
+    (this.el).html(message).show('slide', 500)
+    if (scorecard.isFinished() === false) {
+      (this.el).hide('blind', 1000) }
+  }
 }

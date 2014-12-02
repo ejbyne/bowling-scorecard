@@ -8,7 +8,7 @@ $(document).ready(function(){
 
   $('header').animate({top: '+=200px'}, 2000);
 
-  $('#name_submit').on('click', function(event) {
+  $('#enter_name_form').on('submit', function(event) {
     event.preventDefault()
     var name = $('#enter_name').val()
     player.setName(name)
@@ -40,13 +40,13 @@ $(document).ready(function(){
       }
     }
     
-    if(scorecard.isFinished()) {
+    if (scorecard.isFinished()) {
       $('#pin_request').css("display", "none")
     }
 
     gameStatus.addText(gameStatus.printGameStatus(scorecard))
     tableData.addText(tableData.printData(scorecard))
-    gameMessage.addGameMessage(gameMessage.printGameMessage(scorecard))
+    gameMessage.addGameMessage(scorecard, gameMessage.printGameMessage(scorecard))
   })
 
 })
