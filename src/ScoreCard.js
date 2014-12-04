@@ -6,13 +6,13 @@ function ScoreCard(player) {
 ScoreCard.prototype.enterRoll = function(pinsHit) {
   if (this.isGameFinished()) { return "Game over" }
   this.recordScore(pinsHit)
-  if (this.frames.length < 10) { this.currentFrame().recordIfStrikeOrSpare() }
+  // if (this.frames.length < 10) { this.currentFrame().recordIfStrikeOrSpare() }
   if (this.frames.length > 1) { this.addPreviousFramesBonus(pinsHit) }
 }
 
 ScoreCard.prototype.recordScore = function(pinsHit) {
   this.checkIfNewFrame()
-  if (this.currentFrame().isInvalidNumber(pinsHit)) { return "Incorrect number" }
+  // if (this.currentFrame().isInvalidNumber(pinsHit)) { return "Incorrect number" }
   this.currentFrame().rolls.push(pinsHit)
   this.currentFrame().score = parseInt(this.currentFrame().score) + parseInt(pinsHit)
 }
@@ -49,6 +49,7 @@ ScoreCard.prototype.totalScore = function() {
 
 ScoreCard.prototype.isGameFinished = function() {
   this.frames.length === 10 && this.currentFrame().isFinalFrameFinished()
+}
 
 ScoreCard.prototype.gutterGame = function() {
   this.isGameFinished() && this.totalScore() === 0

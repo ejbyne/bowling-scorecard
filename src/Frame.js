@@ -5,7 +5,7 @@ function Frame() {
 }
 
 Frame.protocol.isInvalidNumber = function(pinsHit) {
-  this.rolls.length === 1 && !this.isStrike() && pinsHit > (10 - this.score)
+  this.rolls.length === 1 && this.rolls[0] < 10 && pinsHit > (10 - this.score)
 }
 
 Frame.protocol.isStrike = function() {
