@@ -3,7 +3,7 @@ describe("ScoreCard", function() {
   var player, scorecard
 
   var completeNineFrames = function() {
-    for (i = 1; i <= 18; i++) {
+    for (var i = 1; i <= 18; i++) {
     scorecard.enterRoll(1) }
   }
 
@@ -30,8 +30,7 @@ describe("ScoreCard", function() {
 
     it("will not accept a number less than zero or more than 10", function() {
       scorecard.enterRoll(5)
-      scorecard.enterRoll(-1)
-      scorecard.enterRoll(11)
+      scorecard.enterRoll(9)
       expect(scorecard.currentFrame().score).toBe(5)
     })
 
@@ -75,29 +74,29 @@ describe("ScoreCard", function() {
 
     it("will know the game is finished after 10 frames", function() {
       completeNineFrames()
-      expect(scorecard.isFinished()).toBe(false)
+      expect(scorecard.isGameFinished()).toBe(false)
       scorecard.enterRoll(2)
-      expect(scorecard.isFinished()).toBe(false)
+      expect(scorecard.isGameFinished()).toBe(false)
       scorecard.enterRoll(3)
-      expect(scorecard.isFinished()).toBe(true)
+      expect(scorecard.isGameFinished()).toBe(true)
     })
 
     it("will allow three rolls in the final frame if there is a strike", function() {
       completeNineFrames()
       scorecard.enterRoll(10)
       scorecard.enterRoll(8)
-      expect(scorecard.isFinished()).toBe(false)
+      expect(scorecard.isGameFinished()).toBe(false)
       scorecard.enterRoll(8)
-      expect(scorecard.isFinished()).toBe(true)
+      expect(scorecard.isGameFinished()).toBe(true)
     })
 
     it("will allow three rolls in the final frame if there is a spare", function() {
       completeNineFrames()
       scorecard.enterRoll(6)
       scorecard.enterRoll(4)
-      expect(scorecard.isFinished()).toBe(false)
+      expect(scorecard.isGameFinished()).toBe(false)
       scorecard.enterRoll(4)
-      expect(scorecard.isFinished()).toBe(true)
+      expect(scorecard.isGameFinished()).toBe(true)
     })
 
     it("will not allow another roll if the game is finished", function() {
@@ -108,15 +107,15 @@ describe("ScoreCard", function() {
     })
 
     it("will know if there was a gutter game", function(){
-      for (i = 1; i <= 20; i++) {
+      for (var i = 1; i <= 20; i++) {
         scorecard.enterRoll(0) }
-      expect(scorecard.gutterGame()).toBe(true)
+      expect(scorecard.isGutterGame()).toBe(true)
     })
 
     it("will know if there was a perfect game", function(){
-      for (i = 1; i <= 12; i++) {
+      for (var i = 1; i <= 12; i++) {
         scorecard.enterRoll(10) }
-      expect(scorecard.perfectGame()).toBe(true)
+      expect(scorecard.isPerfectGame()).toBe(true)
     })
 
   })

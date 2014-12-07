@@ -1,0 +1,42 @@
+
+<!-- saved from url=(0064)file:///Users/Ed/Projects/angular-github-report-card/index.html? -->
+<html lang="en" ng-app="GitUserSearch" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+    <meta charset="utf-8">
+    <title>Github user search</title>
+    <link rel="stylesheet" href="file:///Users/Ed/Projects/angular-github-report-card/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./Github user search_files/app.css">
+    <script src="./Github user search_files/jquery.js"></script>
+    <script src="./Github user search_files/angular.js"></script>
+    <script src="./Github user search_files/angular-resource.js"></script>
+  </head>
+
+  <body ng-controller="GitUserSearchController" class="ng-scope">
+    <div>
+      <form class="form-horizontal ng-valid ng-dirty ng-valid-parse">
+        <input type="text" ng-model="searchTerm" ng-change="doSearch()" ng-model-options="{ updateOn: &#39;default blur&#39;, debounce: {&#39;default&#39;: 500, &#39;blur&#39;: 50} }" class="ng-valid ng-dirty ng-valid-parse ng-touched">
+        <button class="btn" ng-click="doSearch()">Search</button>
+      </form>
+      <p id="search_for" style="display: none;">You searched for: </p>
+      <p class="ng-binding">shadchnev</p>
+      <p class="ng-binding"></p>
+      <br>
+      <!-- ngRepeat: user in searchResult.items --><ul class="list-group ng-scope" ng-repeat="user in searchResult.items">
+        <li>
+          <img class="img" ng-src="https://avatars.githubusercontent.com/u/40514?v=3" src="./Github user search_files/40514">
+          <a ng-href="https://github.com/shadchnev" class="ng-binding" href="https://github.com/shadchnev">shadchnev</a>
+    <!--        <button class="btn" ng-click="commitCount(commit)">CommitCount</button> -->
+        </li>
+      </ul><!-- end ngRepeat: user in searchResult.items -->
+    </div>
+    <p id="repo_result"></p>
+  
+    <!-- ngRepeat: commit in repoResult -->
+
+    <p class="ng-binding">30</p>
+
+
+    <script src="./Github user search_files/app.js"></script>
+    <script src="./Github user search_files/gitUserSearchController.js"></script>
+  
+
+</body></html>

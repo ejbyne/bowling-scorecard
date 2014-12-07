@@ -3,22 +3,15 @@ function ScoreCard(player) {
   this.frames = []
 }
 
+ScoreCard.prototype.currentFrame = function() {
+  return this.frames[this.frames.length-1]
+}
+
 ScoreCard.prototype.enterRoll = function(pinsHit) {
   if (this.isGameFinished()) { return "Game over" }
   this.recordScore(pinsHit)
-  // if (this.frames.length < 10) { this.currentFrame().recordIfStrikeOrSpare() }
+  if (this.frames.length < 10) { this.currentFrame().recordIfStrikeOrSpare() }
   if (this.frames.length > 1) { this.addPreviousFramesBonus(pinsHit) }
-}
-
-ScoreCard.prototype.recordScore = function(pinsHit) {
-  this.checkIfNewFrame()
-  // if (this.currentFrame().isInvalidNumber(pinsHit)) { return "Incorrect number" }
-  this.currentFrame().rolls.push(pinsHit)
-  this.currentFrame().score = parseInt(this.currentFrame().score) + parseInt(pinsHit)
-}
-
-ScoreCard.prototype.currentFrame = function() {
-  return this.frames[this.frames.length-1]
 }
 
 ScoreCard.prototype.checkIfNewFrame = function() {
@@ -26,13 +19,20 @@ ScoreCard.prototype.checkIfNewFrame = function() {
     this.startFrame() }
 }
 
+ScoreCard.prototype.recordScore = function(pinsHit) {
+  this.checkIfNewFrame()
+  if (this.currentFrame().isInvalidNumber(pinsHit)) { return "Incorrect number" }
+  this.currentFrame().rolls.push(pinsHit)
+  this.currentFrame().score = parseInt(this.currentFrame().score) + parseInt(pinsHit)
+}
+
+
 ScoreCard.prototype.startFrame = function() {
   this.frames.push(new Frame())
 }
 
 ScoreCard.prototype.addPreviousFramesBonus = function(pinsHit) {
-  var frame = 0
-  for (var frame = 0; i < this.frames.length-1; frame++) {
+  for (var frame = 0; frame < this.frames.length-1; frame++) {
     if (this.frames[frame].bonus > 0) {
       this.frames[frame].score = parseInt(this.frames[frame].score) + parseInt(pinsHit)
       this.frames[frame].bonus = parseInt(this.frames[frame].bonus) - 1
@@ -42,21 +42,24 @@ ScoreCard.prototype.addPreviousFramesBonus = function(pinsHit) {
 
 ScoreCard.prototype.totalScore = function() {
   var total = 0
-  for (frame = 0; i < this.frames.length; frame++) {
+  for (var frame = 0; frame < this.frames.length; frame++) {
     var total = parseInt(total) + parseInt(this.frames[frame].score)
   } return total
 }
 
 ScoreCard.prototype.isGameFinished = function() {
-  this.frames.length === 10 && this.currentFrame().isFinalFrameFinished()
+  if (this.frames.length === 10 && this.currentFrame().isFinalFrameFinished()) { return true }
+  else { return false }
 }
 
-ScoreCard.prototype.gutterGame = function() {
-  this.isGameFinished() && this.totalScore() === 0
+ScoreCard.prototype.isGutterGame = function() {
+  if (this.isGameFinished() && this.totalScore() === 0) { return true }
+  else { return false }
 }
 
-ScoreCard.prototype.perfectGame = function() {
-  this.isGameFinished() && this.totalScore() === 300
+ScoreCard.prototype.isPerfectGame = function() {
+  if (this.isGameFinished() && this.totalScore() === 300) { return true }
+  else { return false }
 }
 
 // Scorecard.prototype.isInvalidNumber = function(pinsHit) {
