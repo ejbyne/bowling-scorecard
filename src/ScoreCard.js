@@ -31,12 +31,12 @@ ScoreCard.prototype.currentFrame = function() {
 }
 
 ScoreCard.prototype.addPreviousFramesBonus = function(pinsHit) {
-  for (var frame = 0; frame < this.frames.length-1; frame++) {
-    if (this.frames[frame].bonus > 0) {
-      this.frames[frame].score = parseInt(this.frames[frame].score) + parseInt(pinsHit)
-      this.frames[frame].bonus = parseInt(this.frames[frame].bonus) - 1
+  this.frames.forEach(function(frame) {
+    if (frame.bonus > 0) {
+      frame.score = parseInt(frame.score) + parseInt(pinsHit)
+      frame.bonus = parseInt(frame.bonus) - 1
     }
-  }
+  })
 }
 
 ScoreCard.prototype.totalScore = function() {
