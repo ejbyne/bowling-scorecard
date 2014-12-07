@@ -158,10 +158,10 @@ describe("ScoreCard", function() {
     })
 
     it("will allow a maximum score of 300", function() {
-      for (i = 1; i <= 12; i++) {
+      for (var i = 1; i <= 12; i++) {
         scorecard.enterRoll(10)
       }
-      expect(scorecard.isFinished()).toBe(true)
+      expect(scorecard.isGameFinished()).toBe(true)
       expect(scorecard.totalScore()).toBe(300)
     })
 

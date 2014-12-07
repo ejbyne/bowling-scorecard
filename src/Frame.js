@@ -5,7 +5,7 @@ function Frame() {
 }
 
 Frame.prototype.isInvalidNumber = function(pinsHit) {
-  if (this.rolls.length < 3 && pinsHit > (10 - this.score)) { return true }
+  if (this.rolls.length === 1 && this.score < 10 && pinsHit > (10 - this.score) ) { return true }
   else { return false }
 }
 
