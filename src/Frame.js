@@ -5,31 +5,26 @@ function Frame() {
 }
 
 Frame.prototype.isInvalidNumber = function(pinsHit) {
-  if (this.rolls.length === 1 && this.score < 10 && pinsHit > (10 - this.score) ) { return true }
-  else { return false }
+  return (this.rolls.length === 1 && this.score < 10 && pinsHit > (10 - this.score));
 }
 
 Frame.prototype.isStrike = function() {
-  if (this.rolls[0] === 10) { return true }
-  else { return false }
+  return (this.rolls[0] === 10);
 }
 
 Frame.prototype.isSpare = function() {
-  if (this.score === 10 && this.rolls.length === 2) { return true }
-  else { return false }
+  return (this.score === 10 && this.rolls.length === 2);
 }
 
 Frame.prototype.recordIfStrikeOrSpare = function() {
   if (this.isStrike()) { this.bonus = 2 }
-  else if (this.isSpare()) { this.bonus = 1 }
+  else if (this.isSpare()) { this.bonus = 1 };
 }
 
 Frame.prototype.isStandardFrameFinished = function() {
-  if (this.isStrike() || this.rolls.length === 2) { return true }
-  else { return false }
+  return (this.isStrike() || this.rolls.length === 2);
 }
 
 Frame.prototype.isFinalFrameFinished = function() {
-  if ((this.rolls.length === 2 && this.score < 10) || this.rolls.length === 3) { return true }
-  else { return false }
+  return ((this.rolls.length === 2 && this.score < 10) || this.rolls.length === 3);
 }

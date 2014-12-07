@@ -47,16 +47,13 @@ ScoreCard.prototype.totalScore = function() {
 }
 
 ScoreCard.prototype.isGameFinished = function() {
-  if (this.frames.length === 10 && this.currentFrame().isFinalFrameFinished()) { return true }
-  else { return false }
+  return (this.frames.length === 10 && this.currentFrame().isFinalFrameFinished())
 }
 
 ScoreCard.prototype.isGutterGame = function() {
-  if (this.isGameFinished() && this.totalScore() === 0) { return true }
-  else { return false }
+  return (this.isGameFinished() && this.totalScore() === 0)
 }
 
 ScoreCard.prototype.isPerfectGame = function() {
-  if (this.isGameFinished() && this.totalScore() === 300) { return true }
-  else { return false }
+  return (this.isGameFinished() && this.totalScore() === 300)
 }
