@@ -47,7 +47,7 @@ Message.prototype.addText = function(message) {
 
 Message.prototype.addGameMessage = function(scorecard, message) {
   if (message !== "") {
-    (this.el).html(message).show('slide', 500).hide('blind', 1000);
+    (this.el).html(message).show('slide', 500);
     if (scorecard.isGameFinished() === false) { (this.el).hide('blind', 1000); }
   }
 };

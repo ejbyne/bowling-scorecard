@@ -33,10 +33,8 @@
       event.preventDefault();
       var rollEntry = parseInt($(this).data('pick'));
       var enterRoll = scorecard.enterRoll(rollEntry);
-      if (enterRoll !== "Incorrect number") { 
-        hideUnavailableNumbers(rollEntry);
-        showGameMessages();
-      }
+      if (enterRoll !== "Incorrect number") { hideUnavailableNumbers(rollEntry); }
+      showGameMessages();
     });
   };
   
