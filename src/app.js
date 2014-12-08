@@ -27,45 +27,43 @@
     $('#list li').mouseenter(function() { $(this).css("opacity", 1); });
     $('#list li').mouseleave(function() { $(this).css("opacity", 0.8); });
   };
-
+  
   var clickNumber = function() {
     $('#list li').on('click', function(event) {
       event.preventDefault();
       var rollEntry = parseInt($(this).data('pick'));
       var enterRoll = scorecard.enterRoll(rollEntry);
-      if(enterRoll != "Incorrect number") { hideUnavailableNumbers(rollEntry); }    
-      showGameMessages();
+      if (enterRoll !== "Incorrect number") { 
+        hideUnavailableNumbers(rollEntry);
+        showGameMessages();
+      }
     });
   };
   
   var hideUnavailableNumbers = function(rollEntry) {
-    if(parseInt(scorecard.currentFrame().rolls.length) === 1 && parseInt(scorecard.currentFrame().rolls[0]) < 10) {
+    if (parseInt(scorecard.currentFrame().rolls.length) === 1 && parseInt(scorecard.currentFrame().rolls[0]) < 10) {
       for (var i = 0; i <= 10; i++) {
         var unavailable = ('#' + String(i));
-        if ((parseInt(rollEntry) + i) > 10) {
-          $(unavailable).unbind('mouseenter').unbind('mouseleave').css('opacity', 0.2);
-        } 
+        if (parseInt(rollEntry) + parseInt(i) > 10) { $(unavailable).unbind('mouseenter').unbind('mouseleave').css('opacity', 0.2); } 
       } 
-    } else { showAvailableNumbers; }
+    } else { showAvailableNumbers(); }
   };
 
   var showAvailableNumbers = function() {
     $('#list li').css('opacity', 0.8).mouseenter(function() { 
-      $(this).css('opacity', 1) }).mouseleave(function() {
-        $(this).css('opacity', 0.8) });
+      $(this).css('opacity', 1); }).mouseleave(function() {
+        $(this).css('opacity', 0.8); });
   };
 
   var showGameMessages = function() {
-    if (scorecard.isGameFinished()) { $('#pin_request').css("display", "none"); }
-    gameStatus.addText(gameStatus.printGameStatus(scorecard));
-    tableData.addText(tableData.printData(scorecard));
     gameMessage.addGameMessage(scorecard, gameMessage.printGameMessage(scorecard));
+    tableData.addText(tableData.printTableData(scorecard));
+    gameStatus.addText(gameStatus.printGameStatus(scorecard));
+    if (scorecard.isGameFinished()) { $('#pin_request').css("display", "none"); }
   };
 
 $(document).ready(function(){
-  
   startGame();
   numberAnimations();
   clickNumber();
-
 });

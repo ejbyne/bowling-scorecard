@@ -101,7 +101,6 @@ tr {
 #message_box {
   z-index: -1;
   position: absolute;
-  /*left: -300px;*/
   top: 80px;
   left: 20px;
   width: 150px;

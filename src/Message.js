@@ -4,17 +4,17 @@ function Message(el) {
 };
 
 Message.prototype.printGameStatus = function(scorecard) {
-  if (scorecard.frames.length === 0 ) { return 'Frame 1 Roll 1'; }
-  else if (scorecard.isGameFinished()) { return 'Game Over'; }
+  if (scorecard.isGameFinished()) { return 'Game Over'; }
+  else if (scorecard.frames.length === 0 ) { return 'Frame 1 Roll 1'; }
   else {
     if ((scorecard.currentFrame().rolls.length === 2 || scorecard.currentFrame().rolls[0] === 10) && scorecard.frames.length < 10) {
       var frame = parseInt(scorecard.frames.length + 1); var roll = 1;
     } else { var frame = scorecard.frames.length; var roll = parseInt(scorecard.currentFrame().rolls.length + 1); }
-  return ('Frame ' + frame + ' Roll ' + roll);
+    return ('Frame ' + frame + ' Roll ' + roll);
   }
 };
 
-Message.prototype.printData = function(scorecard) {
+Message.prototype.printTableData = function(scorecard) {
   var data = '<tr><th>Frame</th><th>Roll</th><th>Pins</th><th>Frame score</th><th>Total score</th></tr>';
   for (var frame = 0; frame < scorecard.frames.length; frame++) {
     for (var roll = 0; roll < scorecard.frames[frame].rolls.length; roll++) { 
@@ -29,15 +29,15 @@ Message.prototype.printData = function(scorecard) {
 };
 
 Message.prototype.printGameMessage = function(scorecard) {
-  if(scorecard.isGameFinished() === false) {
-    if(scorecard.currentFrame().rolls[0] === 10) { return "Strike!"; }
-    else if (scorecard.currentFrame().score === 10) { return "Spare!"; }
-    else { return ""; }
-  }
-  if(scorecard.isGameFinished()) {
-    if(scorecard.isGutterGame()) { return "Gutter Game!"; }
-    else if(scorecard.isPerfectGame()) { return "Perfect Game!"; }
+  if (scorecard.isGameFinished()) {
+    if (scorecard.isGutterGame()) { return "Gutter Game!"; }
+    else if (scorecard.isPerfectGame()) { return "Perfect Game!"; }
     else { return "Nice Try!"; }
+  }
+  else {
+    if (scorecard.currentFrame().isStrike()) { return "Strike!" }
+    else if (scorecard.currentFrame().isSpare()) { return "Spare!" }
+    else { return "" }
   }
 };
 
@@ -46,9 +46,8 @@ Message.prototype.addText = function(message) {
 };
 
 Message.prototype.addGameMessage = function(scorecard, message) {
-  if (message != "") {
-    (this.el).html(message).show('slide', 500);
-    if (scorecard.isGameFinished() === false) {
-      (this.el).hide('blind', 1000); }
+  if (message !== "") {
+    (this.el).html(message).show('slide', 500).hide('blind', 1000);
+    if (scorecard.isGameFinished() === false) { (this.el).hide('blind', 1000); }
   }
 };

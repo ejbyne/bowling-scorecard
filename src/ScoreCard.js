@@ -5,14 +5,13 @@ function ScoreCard(player) {
 
 ScoreCard.prototype.enterRoll = function(pinsHit) {
   if (this.isGameFinished()) { return "Game over"; }
+  this.checkIfNewFrame();
+  if (this.currentFrame().isInvalidNumber(pinsHit)) { return "Incorrect number"; }
   this.recordScore(pinsHit);
-  if (this.frames.length < 10) { this.currentFrame().recordIfStrikeOrSpare(); }
-  if (this.frames.length > 1) { this.addPreviousFramesBonus(pinsHit); }
+  this.checkBonus(pinsHit);
 };
 
 ScoreCard.prototype.recordScore = function(pinsHit) {
-  this.checkIfNewFrame();
-  if (this.currentFrame().isInvalidNumber(pinsHit)) { return "Incorrect number"; }
   this.currentFrame().rolls.push(pinsHit);
   this.currentFrame().score += parseInt(pinsHit);
 };
@@ -30,6 +29,11 @@ ScoreCard.prototype.startFrame = function() {
 ScoreCard.prototype.currentFrame = function() {
   return this.frames[this.frames.length-1];
 };
+
+ScoreCard.prototype.checkBonus = function(pinsHit) {
+  if (this.frames.length < 10) { this.currentFrame().recordIfStrikeOrSpare(); }
+  if (this.frames.length > 1) { this.addPreviousFramesBonus(pinsHit); }
+}
 
 ScoreCard.prototype.addPreviousFramesBonus = function(pinsHit) {
   this.frames.forEach(function(frame) {
