@@ -28,7 +28,7 @@ ScoreCard.prototype.currentFrame = function() {
 ScoreCard.prototype.checkBonus = function(pinsHit) {
   if (this.frames.length < 10) { this.currentFrame().recordIfStrikeOrSpare(); }
   if (this.frames.length > 1) { this.addPreviousFramesBonus(pinsHit); }
-}
+};
 
 ScoreCard.prototype.addPreviousFramesBonus = function(pinsHit) {
   for (var frame = 0; frame < this.frames.length-1; frame++) {
@@ -37,7 +37,7 @@ ScoreCard.prototype.addPreviousFramesBonus = function(pinsHit) {
       this.frames[frame].bonus--;
     }
   }
-}
+};
 
 ScoreCard.prototype.totalScore = function() {
   var total = 0;
