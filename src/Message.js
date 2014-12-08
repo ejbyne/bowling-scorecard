@@ -35,9 +35,9 @@ Message.prototype.printGameMessage = function(scorecard) {
     else { return "Nice Try!"; }
   }
   else {
-    if (scorecard.currentFrame().isStrike()) { return "Strike!" }
-    else if (scorecard.currentFrame().isSpare()) { return "Spare!" }
-    else { return "" }
+    if (scorecard.currentFrame().isStrike()) { return "Strike!"; }
+    else if (scorecard.currentFrame().score === 10) { return "Spare!"; }
+    else { return ""; }
   }
 };
 

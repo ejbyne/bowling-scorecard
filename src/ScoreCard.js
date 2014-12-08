@@ -36,18 +36,18 @@ ScoreCard.prototype.checkBonus = function(pinsHit) {
 }
 
 ScoreCard.prototype.addPreviousFramesBonus = function(pinsHit) {
-  this.frames.forEach(function(frame) {
-    if (frame.bonus > 0) {
-      frame.score += parseInt(pinsHit);
-      frame.bonus--;
+  for (var frame = 0; frame < this.frames.length-1; frame++) {
+    if (this.frames[frame].bonus > 0) {
+      this.frames[frame].score += parseInt(pinsHit);
+      this.frames[frame].bonus--;
     }
-  });
-};
+  }
+}
 
 ScoreCard.prototype.totalScore = function() {
   var total = 0;
   for (var frame = 0; frame < this.frames.length; frame++) {
-    var total = parseInt(total) + parseInt(this.frames[frame].score);
+    total+= parseInt(this.frames[frame].score);
   } return total;
 };
 
@@ -62,11 +62,3 @@ ScoreCard.prototype.isGutterGame = function() {
 ScoreCard.prototype.isPerfectGame = function() {
   return (this.isGameFinished() && this.totalScore() === 300);
 };
-
-// ScoreCard.prototype.totalScore = function() {
-//   var total = 0
-//   this.frames.forEach(function(frame) {
-//     var total = parseInt(total) + parseInt(frame.score)
-//   })
-//   return total
-// }

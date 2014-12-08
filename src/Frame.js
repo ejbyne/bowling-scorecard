@@ -13,7 +13,7 @@ Frame.prototype.isStrike = function() {
 };
 
 Frame.prototype.isSpare = function() {
-  return (this.score === 10 && this.rolls.length === 2);
+  return (this.rolls[0] !== 10 && this.rolls.length === 2 && this.score === 10);
 };
 
 Frame.prototype.recordIfStrikeOrSpare = function() {
