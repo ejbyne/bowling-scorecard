@@ -23,12 +23,7 @@ describe("ScoreCard", function() {
 
   describe("recording results", function() {
 
-    it("will record the number of pins hit by a roll", function(){
-      scorecard.enterRoll(5)
-      expect(scorecard.frames[0].rolls[0]).toBe(5)
-    })
-
-    it("will not accept a number less than zero or more than 10", function() {
+    it("will not accept an invalid number", function() {
       scorecard.enterRoll(5)
       scorecard.enterRoll(9)
       expect(scorecard.currentFrame().score).toBe(5)

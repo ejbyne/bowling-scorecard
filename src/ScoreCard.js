@@ -7,13 +7,8 @@ ScoreCard.prototype.enterRoll = function(pinsHit) {
   if (this.isGameFinished()) { return "Game over"; }
   this.checkIfNewFrame();
   if (this.currentFrame().isInvalidNumber(pinsHit)) { return "Incorrect number"; }
-  this.recordScore(pinsHit);
+  this.currentFrame().recordScore(pinsHit);
   this.checkBonus(pinsHit);
-};
-
-ScoreCard.prototype.recordScore = function(pinsHit) {
-  this.currentFrame().rolls.push(pinsHit);
-  this.currentFrame().score += parseInt(pinsHit);
 };
 
 ScoreCard.prototype.checkIfNewFrame = function() {

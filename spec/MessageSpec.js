@@ -1,15 +1,22 @@
 describe("Message", function() {
 
-  var container
+  var container, message
 
   beforeEach(function() {
-    container = $("<div></div>")
+    container = $("<div></div>");
+    message = new Message(container);
   })
 
-  it('displays html messages', function() {
-    var message = new Message(container)
-    message.addText('Test Message')
-    expect(container.html()).toMatch(/Test Message/)
+  it('displays game information', function() {
+    message.addText('Test Message');
+    expect(container.html()).toMatch(/Test Message/);
+  })
+
+  it('displays game messages', function() {
+    var player = new Player();
+    var scorecard = new ScoreCard(player);
+    message.addGameMessage(scorecard, 'Test Message');
+    expect(container.html()).toMatch(/TestMessage/);
   })
 
 })
