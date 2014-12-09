@@ -15,7 +15,7 @@ describe("ScoreCard", function() {
   describe("starting a frame", function() {
 
     it("will add a frame to the player's scorecard", function() {
-      scorecard.startFrame();
+      scorecard._startFrame();
       expect(scorecard.frames.length).toBe(1);
     });
 
