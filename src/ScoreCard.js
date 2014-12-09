@@ -1,7 +1,9 @@
+'use strict';
+
 function ScoreCard(player) {
   this.player = player;
   this.frames = [];
-};
+}
 
 ScoreCard.prototype.enterRoll = function(pinsHit) {
   if (this.isGameFinished()) { return "Game over"; }

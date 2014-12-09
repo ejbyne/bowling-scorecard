@@ -52,7 +52,7 @@ describe('Frame', function(){
       frame.recordScore(5);
       expect(frame.rolls[0]).toBe(5);
       expect(frame.score).toBe(5);
-    })
+    });
 
     it('knows if a number is invalid', function() {
       frame.recordScore(9);

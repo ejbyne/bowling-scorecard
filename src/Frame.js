@@ -1,8 +1,10 @@
+'use strict';
+
 function Frame() {
   this.rolls = [];
   this.score = 0;
   this.bonus = 0;
-};
+}
 
 Frame.prototype.isInvalidNumber = function(pinsHit) {
   return (this.rolls.length === 1 && this.score < 10 && pinsHit > (10 - this.score));
@@ -11,7 +13,7 @@ Frame.prototype.isInvalidNumber = function(pinsHit) {
 Frame.prototype.recordScore = function(pinsHit) {
   this.rolls.push(pinsHit);
   this.score += parseInt(pinsHit);
-}
+};
 
 Frame.prototype.isStrike = function() {
   return (this.rolls[0] === 10);
