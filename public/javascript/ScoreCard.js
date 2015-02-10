@@ -1,5 +1,3 @@
-'use strict';
-
 function ScoreCard(player) {
   this.player = player;
   this.frames = [];

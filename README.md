@@ -1,11 +1,14 @@
-Bowling Scorecard
-=======================
+# Bowling Scorecard
 
-## Synopsis
+## Summary
 
 My Week 4 challenge at Makers Academy was to create a 10 pin bowling scorecard in JavaScript.
 
-## Technologies Used
+This was a great challenge for learning object oriented programming in JavaScript. Whilst it was relatively straightforward to get the basic game logic in place, my code initially looked really ugly and the hardest part was learning to refactor the code into manageable functions.
+
+I also put a lot of work into learning and getting to grips with using JQuery/JavaScript for my front-end design, in order to ensure the scorecard updated correctly and appropriate game messages were displayed.
+
+## Technologies used
 
 - JavaScript
 - Jasmine
@@ -13,7 +16,7 @@ My Week 4 challenge at Makers Academy was to create a 10 pin bowling scorecard i
 - HTML
 - CSS
 
-## Job List
+## Completed tasks
 
 - Count and sum the scores of a bowling game for one player (in JavaScript).
 - A bowling game consists of 10 frames in which the player tries to knock down the 10 pins. In every frame the player can roll one or two times. The actual number depends on strikes and spares. The score of a frame is the number of knocked down pins plus bonuses for strikes and spares. After every frame the 10 pins are reset.
@@ -23,6 +26,10 @@ My Week 4 challenge at Makers Academy was to create a 10 pin bowling scorecard i
 - A Gutter Game is when the player never hits a pin (20 zero scores).
 - A Perfect Game is when the player rolls 12 strikes (10 regular strikes and 2 strikes for the bonus in the 10th frame). The Perfect Game scores 300 points.
 - Optional: Create a nice interactive animated interface with jQuery.
+
+## To do list
+
+- Refactor front end JQuery and message functions
 
 ## Favourite Code Snippet
 
@@ -38,17 +45,3 @@ I was particularly pleased with the neat solution for adding bonuses to the fram
     }
   };
 ~~~
-
-## Collaborators
-
-- None
-
-## Still to complete/refactor
-
-- None
-
-## Takeaway
-
-This was a great challenge for learning object oriented programming in JavaScript. Whilst it was relatively straightforward to get the basic game logic in place, my code initially looked really ugly and the hardest part was learning to refactor the code into manageable functions.
-
-I also put a lot of work into learning and getting to grips with using JQuery/JavaScript for my front-end design, in order to ensure the scorecard updated correctly and appropriate game messages were displayed.
