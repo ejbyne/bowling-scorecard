@@ -16,7 +16,7 @@
     "url": "https://github.com/ejbyne/bowling-scorecard/issues"
   },
   "homepage": "https://github.com/ejbyne/bowling-scorecard",
-  "devDependencies": {
+  "dependencies": {
     "express": "^4.11.2"
   }
 }
