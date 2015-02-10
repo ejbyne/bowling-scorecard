@@ -33,7 +33,7 @@ I also put a lot of work into learning and getting to grips with using JQuery/Ja
 
 ## Favourite Code Snippet
 
-I was particularly pleased with the neat solution for adding bonuses to the frames. At the end of each frame a bonus of 2 is added to the frame for a strike, or 1 for a spare. Then in subsequent frames the "addPreviousFramesBonus" function checks for any bonuses, adds the applicable score to that frame, and reduces the bonus count by 1: 
+I was quite pleased with the neat solution for adding bonuses to the frames. At the end of each frame a bonus of 2 is added to the frame for a strike, or 1 for a spare. Then in subsequent frames the "addPreviousFramesBonus" function checks for any bonuses, adds the applicable score to that frame, and reduces the bonus count by 1: 
 
 ~~~
    ScoreCard.prototype.addPreviousFramesBonus = function(pinsHit) {
