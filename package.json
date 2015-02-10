@@ -1,0 +1,22 @@
+{
+  "name": "bowling-scorecard",
+  "version": "1.0.0",
+  "description": "10 Pin Bowling Scorecard",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ejbyne/bowling-scorecard.git"
+  },
+  "author": "Edward Byne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ejbyne/bowling-scorecard/issues"
+  },
+  "homepage": "https://github.com/ejbyne/bowling-scorecard",
+  "devDependencies": {
+    "express": "^4.11.2"
+  }
+}
