@@ -16,6 +16,9 @@ I also put a lot of work into learning and getting to grips with using JQuery/Ja
 - HTML
 - CSS
 
+## Screenshot
+<img src='/images/bowling_screenshot.png'>
+
 ## Completed tasks
 
 - Count and sum the scores of a bowling game for one player (in JavaScript).
