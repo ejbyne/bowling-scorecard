@@ -15,7 +15,6 @@ var startGame = function() {
 };
 
 var showGameLayout = function(name) {
-  // gameStatus.addText(gameStatus.printGameStatus(scorecard));
   gameStatus.addGameStatus(scorecard);
   $('#enter_name_form').css("display", "none");
   $('#welcome_message').html(name + "'s Bowling Scorecard");
@@ -23,28 +22,40 @@ var showGameLayout = function(name) {
   $('#selection').css("display", "inline-block");
 };
 
-var numberAnimations = function() {
+var startNumberAnimations = function() {
   $('#list li').mouseenter(function() { $(this).css("opacity", 1); });
   $('#list li').mouseleave(function() { $(this).css("opacity", 0.8); });
 };
 
-var clickNumber = function() {
+var waitForNumberClick = function() {
   $('#list li').on('click', function(event) {
     event.preventDefault();
     var rollEntry = parseInt($(this).data('pick'));
     var enterRoll = scorecard.enterRoll(rollEntry);
-    if (enterRoll !== "Incorrect number") { hideUnavailableNumbers(rollEntry); }
-    showGameMessages();
+    if (enterRoll !== "Incorrect number") {
+      showNumbers(rollEntry);
+      showGameMessages();
+    }
   });
 };
 
+var showNumbers = function(rollEntry) {
+  if (parseInt(scorecard.currentFrame().rolls.length) === 1 &&
+    parseInt(scorecard.currentFrame().rolls[0]) < 10) {
+    hideUnavailableNumbers(rollEntry);
+  }
+  else {
+    showAvailableNumbers();
+  }
+};
+
 var hideUnavailableNumbers = function(rollEntry) {
-  if (parseInt(scorecard.currentFrame().rolls.length) === 1 && parseInt(scorecard.currentFrame().rolls[0]) < 10) {
-    for (var i = 0; i <= 10; i++) {
-      var unavailable = ('#' + String(i));
-      if (parseInt(rollEntry) + parseInt(i) > 10) { $(unavailable).unbind('mouseenter').unbind('mouseleave').css('opacity', 0.2); } 
-    } 
-  } else { showAvailableNumbers(); }
+  for (var i = 0; i <= 10; i++) {
+    var unavailable = ('#' + String(i));
+    if (parseInt(rollEntry) + parseInt(i) > 10) {
+      $(unavailable).unbind('mouseenter').unbind('mouseleave').css('opacity', 0.2);
+    }
+  }
 };
 
 var showAvailableNumbers = function() {
@@ -54,17 +65,16 @@ var showAvailableNumbers = function() {
 };
 
 var showGameMessages = function() {
-  // gameMessage.addGameMessage(scorecard, gameMessage.printGameMessage(scorecard));
   gameMessage.addGameMessage(scorecard);
-  // tableData.addText(tableData.printTableData(scorecard));
   tableData.addTableData(scorecard);
-  // gameStatus.addText(gameStatus.printGameStatus(scorecard));
   gameStatus.addGameStatus(scorecard);
-  if (scorecard.isGameFinished()) { $('#pin_request').css("display", "none"); }
+  if (scorecard.isGameFinished()) {
+    $('#pin_request').css("display", "none");
+  }
 };
 
 $(document).ready(function(){
   startGame();
-  numberAnimations();
-  clickNumber();
+  startNumberAnimations();
+  waitForNumberClick();
 });
