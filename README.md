@@ -2,7 +2,7 @@
 
 ## Summary
 
-My Week 4 challenge at Makers Academy was to create a 10 pin bowling scorecard in JavaScript.
+My Week 5 challenge at Makers Academy was to create a 10 pin bowling scorecard in JavaScript.
 
 This was a great challenge for learning object oriented programming in JavaScript. Whilst it was relatively straightforward to get the basic game logic in place, my code initially looked really ugly and the hardest part was learning to refactor the code into manageable functions.
 

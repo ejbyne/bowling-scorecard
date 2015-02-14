@@ -14,7 +14,7 @@ Message.prototype.addTableData = function(scorecard) {
 
 Message.prototype.addGameMessage = function(scorecard) {
   var message = this._printGameMessage(scorecard);
-  if (message !== "") {
+  if (message !== '') {
     (this.el).html(message).show('slide', 500);
     if (scorecard.isGameFinished() === false) { (this.el).hide('blind', 1000); }
   }
@@ -33,14 +33,13 @@ Message.prototype._printGameStatus = function(scorecard) {
 };
 
 Message.prototype._printTableData = function(scorecard) {
-  var data = '<tr><th>Frame</th><th>Roll</th><th>Pins</th><th>Frame score</th><th>Total score</th></tr>';
+  var data = '<tr><th>Frame</th><th>Roll</th><th>Pins</th><th>' +
+  'Frame score</th><th>Total score</th></tr>';
   for (var frame = 0; frame < scorecard.frames.length; frame++) {
     for (var roll = 0; roll < scorecard.frames[frame].rolls.length; roll++) { 
       var frameScore = this._printFrameScore(scorecard, frame, roll);
       var totalScore = this._printTotalScore(scorecard, frame, roll);
-      var data = data + ('<tr><td>' + (frame + 1) + '</td><td>' + (roll + 1) +
-        '</td><td>' + (scorecard.frames[frame].rolls[roll]) + '</td><td>' +
-        frameScore + '</td><td>' + totalScore + '</td></tr>');
+      data = data + this._printTableRow(scorecard, frame, roll, frameScore, totalScore);
     }
   }
   return data;
@@ -65,7 +64,7 @@ Message.prototype._printCurrentFrameAndRoll = function(scorecard) {
     var roll = parseInt(scorecard.currentFrame().rolls.length + 1);
   }
   return ('Frame ' + frame + ' Roll ' + roll);
-}
+};
 
 Message.prototype._printFrameScore = function(scorecard, frame, roll) {
   if (roll === scorecard.frames[frame].rolls.length-1) {
@@ -85,26 +84,32 @@ Message.prototype._printTotalScore = function(scorecard, frame, roll) {
   }
 };
 
+Message.prototype._printTableRow = function(scorecard, frame, roll, frameScore, totalScore) {
+  return '<tr><td>' + (frame + 1) + '</td><td>' + (roll + 1) +
+         '</td><td>' + (scorecard.frames[frame].rolls[roll]) + '</td><td>' +
+         frameScore + '</td><td>' + totalScore + '</td></tr>';
+};
+
 Message.prototype._printGameOverMessage = function(scorecard) {
   if (scorecard.isGutterGame()) {
-    return "Gutter Game!";
+    return 'Gutter Game!';
   }
   else if (scorecard.isPerfectGame()) {
-    return "Perfect Game!";
+    return 'Perfect Game!';
   }
   else {
-    return "Nice Try!";
+    return 'Nice Try!';
   }
 };
 
 Message.prototype._printStrikeOrSpareMessage = function(scorecard) {
   if (scorecard.currentFrame().isStrike()) {
-    return "Strike!";
+    return 'Strike!';
   }
   else if (scorecard.currentFrame().score === 10) {
-    return "Spare!";
+    return 'Spare!';
   }
   else {
-    return "";
+    return '';
   }
 };

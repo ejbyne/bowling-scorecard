@@ -1,22 +1,42 @@
 describe("Message", function() {
 
-  var container, message;
+  var container, message, scorecard;
 
   beforeEach(function() {
-    container = $("<div></div>");
+    container = $('<div></div>');
     message = new Message(container);
+    scorecard = new ScoreCard();
   });
 
-  it('displays game information', function() {
-    message.addText('Test Message');
-    expect(container.html()).toMatch(/Test Message/);
+  it('displays the game status', function() {
+    message.addGameStatus(scorecard);
+    expect(container.html()).toEqual('Frame 1 Roll 1');
+    scorecard.enterRoll(10);
+    message.addGameStatus(scorecard);
+    expect(container.html()).toEqual('Frame 2 Roll 1');
   });
 
-  // it('displays game messages', function() {
-  //   var player = new Player();
-  //   var scorecard = new ScoreCard(player);
-  //   message.addGameMessage(scorecard, 'Test Message');
-  //   expect(container.html()).toMatch(/TestMessage/);
-  // });
+  it('displays the scorecard', function() {
+    scorecard.enterRoll(10);
+    message.addTableData(scorecard);
+    expect(container.html()).toEqual(
+      '<tr><th>Frame</th><th>Roll</th><th>Pins</th><th>Frame score</th><th>Total score</th>' +
+      '</tr><tr><td>1</td><td>1</td><td>10</td><td>10</td><td>10</td></tr>'
+    );
+  });
+
+  it('displays if there has been a strike or a spare', function() {
+    scorecard.enterRoll(10);
+    message.addGameMessage(scorecard);
+    expect(container.html()).toEqual('Strike!');
+  });
+
+  it('displays a message when the game is over', function() {
+    for (var i = 1; i <= 12; i++) {
+      scorecard.enterRoll(10);
+    }
+    message.addGameMessage(scorecard);
+    expect(container.html()).toEqual('Perfect Game!');
+  });
 
 });

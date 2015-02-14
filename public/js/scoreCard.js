@@ -35,7 +35,8 @@ ScoreCard.prototype.isPerfectGame = function() {
 };
 
 ScoreCard.prototype._checkIfNewFrame = function() {
-  if (this.frames.length === 0 || (this.frames.length < 10 && this.currentFrame().isStandardFrameFinished())) {
+  if (this.frames.length === 0 || (this.frames.length < 10 &&
+    this.currentFrame().isStandardFrameFinished())) {
     this._startFrame();
   }
 };
@@ -45,8 +46,12 @@ ScoreCard.prototype._startFrame = function() {
 };
 
 ScoreCard.prototype._checkBonus = function(pinsHit) {
-  if (this.frames.length < 10) { this.currentFrame().recordIfStrikeOrSpare(); }
-  if (this.frames.length > 1) { this._addPreviousFramesBonus(pinsHit); }
+  if (this.frames.length < 10) {
+    this.currentFrame().recordIfStrikeOrSpare();
+  }
+  if (this.frames.length > 1) {
+    this._addPreviousFramesBonus(pinsHit);
+  }
 };
 
 ScoreCard.prototype._addPreviousFramesBonus = function(pinsHit) {
