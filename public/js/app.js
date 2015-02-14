@@ -15,7 +15,8 @@ var startGame = function() {
 };
 
 var showGameLayout = function(name) {
-  gameStatus.addText(gameStatus.printGameStatus(scorecard));
+  // gameStatus.addText(gameStatus.printGameStatus(scorecard));
+  gameStatus.addGameStatus(scorecard);
   $('#enter_name_form').css("display", "none");
   $('#welcome_message').html(name + "'s Bowling Scorecard");
   $('#pin_request').show();
@@ -53,9 +54,12 @@ var showAvailableNumbers = function() {
 };
 
 var showGameMessages = function() {
-  gameMessage.addGameMessage(scorecard, gameMessage.printGameMessage(scorecard));
-  tableData.addText(tableData.printTableData(scorecard));
-  gameStatus.addText(gameStatus.printGameStatus(scorecard));
+  // gameMessage.addGameMessage(scorecard, gameMessage.printGameMessage(scorecard));
+  gameMessage.addGameMessage(scorecard);
+  // tableData.addText(tableData.printTableData(scorecard));
+  tableData.addTableData(scorecard);
+  // gameStatus.addText(gameStatus.printGameStatus(scorecard));
+  gameStatus.addGameStatus(scorecard);
   if (scorecard.isGameFinished()) { $('#pin_request').css("display", "none"); }
 };
 

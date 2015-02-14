@@ -1,6 +1,6 @@
 function Message(el) {
   this.el = $(el);
-  return this;
+  // return this;
 };
 
 Message.prototype.printGameStatus = function(scorecard) {
@@ -41,11 +41,18 @@ Message.prototype.printGameMessage = function(scorecard) {
   }
 };
 
-Message.prototype.addText = function(message) {
+Message.prototype.addGameStatus = function(scorecard) {
+  var message = this.printGameStatus(scorecard);
   (this.el).html(message).fadeIn(1000);
 };
 
-Message.prototype.addGameMessage = function(scorecard, message) {
+Message.prototype.addTableData = function(scorecard) {
+  var message = this.printTableData(scorecard);
+  (this.el).html(message).fadeIn(1000);
+};
+
+Message.prototype.addGameMessage = function(scorecard) {
+  var message = this.printGameMessage(scorecard);
   if (message !== "") {
     (this.el).html(message).show('slide', 500);
     if (scorecard.isGameFinished() === false) { (this.el).hide('blind', 1000); }

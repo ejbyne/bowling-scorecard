@@ -12,6 +12,8 @@ I also put a lot of work into learning and getting to grips with using JQuery/Ja
 
 - JavaScript
 - Jasmine
+- Node.js
+- Express.js
 - JQuery
 - HTML
 - CSS
