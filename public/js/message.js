@@ -56,7 +56,7 @@ Message.prototype._printGameMessage = function(scorecard) {
 };
 
 Message.prototype._printCurrentFrameAndRoll = function(scorecard) {
-  if (this._isFrameFinished(scorecard)) {
+  if (scorecard.frames.length < 10 && scorecard.currentFrame().isStandardFrameFinished()) {
     var frame = parseInt(scorecard.frames.length + 1);
     var roll = 1;
   }
@@ -66,12 +66,6 @@ Message.prototype._printCurrentFrameAndRoll = function(scorecard) {
   }
   return ('Frame ' + frame + ' Roll ' + roll);
 }
-
-Message.prototype._isFrameFinished = function(scorecard) {
-  return (scorecard.currentFrame().rolls.length === 2 ||
-    scorecard.currentFrame().rolls[0] === 10) &&
-    scorecard.frames.length < 10
-};
 
 Message.prototype._printFrameScore = function(scorecard, frame, roll) {
   if (roll === scorecard.frames[frame].rolls.length-1) {
