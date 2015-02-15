@@ -1,3 +1,6 @@
+[![Code Climate](https://codeclimate.com/github/ejbyne/bowling-scorecard/badges/gpa.svg)](https://codeclimate.com/github/ejbyne/bowling-scorecard)
+[![Test Coverage](https://codeclimate.com/github/ejbyne/bowling-scorecard/badges/coverage.svg)](https://codeclimate.com/github/ejbyne/bowling-scorecard)
+
 # Bowling Scorecard
 
 ## Summary
