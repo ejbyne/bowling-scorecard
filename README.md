@@ -23,6 +23,7 @@ I also put a lot of work into learning and getting to grips with using JQuery/Ja
 - Mocha/Chai/CasperJS
 - JSHint
 - Grunt
+- Heroku
 
 ## Screenshot
 <img src='/images/bowling_screenshot.png'>
