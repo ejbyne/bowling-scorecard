@@ -1,4 +1,4 @@
-function Message(el) {
+var Message = function(el) {
   this.el = $(el);
 };
 
@@ -54,13 +54,14 @@ Message.prototype._printGameMessage = function(scorecard) {
 };
 
 Message.prototype._printCurrentFrameAndRoll = function(scorecard) {
+  var frame, roll;
   if (scorecard.frames.length < 10 && scorecard.currentFrame().isStandardFrameFinished()) {
-    var frame = parseInt(scorecard.frames.length + 1);
-    var roll = 1;
+    frame = parseInt(scorecard.frames.length + 1);
+    roll = 1;
   }
   else {
-    var frame = scorecard.frames.length;
-    var roll = parseInt(scorecard.currentFrame().rolls.length + 1);
+    frame = scorecard.frames.length;
+    roll = parseInt(scorecard.currentFrame().rolls.length + 1);
   }
   return ('Frame ' + frame + ' Roll ' + roll);
 };

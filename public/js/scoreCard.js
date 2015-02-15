@@ -1,7 +1,7 @@
-function ScoreCard(player) {
+var ScoreCard = function(player) {
   this.player = player;
   this.frames = [];
-}
+};
 
 ScoreCard.prototype.enterRoll = function(pinsHit) {
   if (this.isGameFinished()) { return "Game over"; }
