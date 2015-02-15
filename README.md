@@ -16,13 +16,12 @@ I also put a lot of work into learning and getting to grips with using JQuery/Ja
 - JavaScript
 - Node.js
 - Express.js
-- Jasmine
-- Mocha
-- Chai
-- CasperJS
 - JQuery
 - HTML
 - CSS
+- Jasmine
+- Mocha/Chai/CasperJS
+- JSHint
 - Grunt
 
 ## Screenshot
