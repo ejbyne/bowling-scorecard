@@ -34,30 +34,30 @@ The live version of the app is available at <a href="https://bowling-scorecard.h
 
 To try the game locally, please clone this repository on your machine:
 
-~~~
+```
 $ git clone https://github.com/ejbyne/bowling-scorecard.git
-~~~
+```
 
 Change into the directory and npm install the modules:
 
-~~~
+```
 $ cd bowling-scorecard
 $ npm install
-~~~
+```
 
 Start the node server:
 
-~~~
+```
 $ npm start
-~~~
+```
 
 Visit <a href="http://localhost:3000">http://localhost:3000</a>.
 
 Run the tests:
 
-~~~
+```
 $ npm test
-~~~
+```
 
 ## Completed tasks
 
@@ -78,7 +78,7 @@ $ npm test
 
 I was quite pleased with the neat solution for adding bonuses to the frames. At the end of each frame a bonus of 2 is added to the frame for a strike, or 1 for a spare. Then in subsequent frames the "addPreviousFramesBonus" function checks for any bonuses, adds the applicable score to that frame, and reduces the bonus count by 1: 
 
-~~~
+```javascript
    ScoreCard.prototype.addPreviousFramesBonus = function(pinsHit) {
     for (var frame = 0; frame < this.frames.length-1; frame++) {
       if (this.frames[frame].bonus > 0) {
@@ -87,4 +87,4 @@ I was quite pleased with the neat solution for adding bonuses to the frames. At 
       }
     }
   };
-~~~
+```
