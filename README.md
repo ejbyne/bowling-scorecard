@@ -11,15 +11,50 @@ I also put a lot of work into learning and getting to grips with using JQuery/Ja
 ## Technologies used
 
 - JavaScript
-- Jasmine
 - Node.js
 - Express.js
+- Jasmine
+- Mocha
+- Chai
+- CasperJS
 - JQuery
 - HTML
 - CSS
+- Grunt
 
 ## Screenshot
 <img src='/images/bowling_screenshot.png'>
+
+## Instructions
+
+The live version of the app is available at <a href="https://bowling-scorecard.herokuapp.com">https://bowling-scorecard.herokuapp.com</a>.
+
+To try the game locally, please clone this repository on your machine:
+
+~~~
+$ git clone https://github.com/ejbyne/bowling-scorecard.git
+~~~
+
+Change into the directory and npm install the modules:
+
+~~~
+$ cd bowling-scorecard
+$ npm install
+~~~
+
+Start the node server:
+
+~~~
+$ npm start
+~~~
+
+Visit <a href="http://localhost:3000">http://localhost:3000</a>.
+
+Run the tests:
+
+~~~
+$ npm test
+~~~
 
 ## Completed tasks
 
