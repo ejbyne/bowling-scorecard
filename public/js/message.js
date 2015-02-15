@@ -33,8 +33,7 @@ Message.prototype._printGameStatus = function(scorecard) {
 };
 
 Message.prototype._printTableData = function(scorecard) {
-  var data = '<tr><th>Frame</th><th>Roll</th><th>Pins</th><th>' +
-  'Frame score</th><th>Total score</th></tr>';
+  var data = this._printTableHeading;
   for (var frame = 0; frame < scorecard.frames.length; frame++) {
     for (var roll = 0; roll < scorecard.frames[frame].rolls.length; roll++) { 
       var frameScore = this._printFrameScore(scorecard, frame, roll);
@@ -64,6 +63,10 @@ Message.prototype._printCurrentFrameAndRoll = function(scorecard) {
     var roll = parseInt(scorecard.currentFrame().rolls.length + 1);
   }
   return ('Frame ' + frame + ' Roll ' + roll);
+};
+
+Message.prototype._printTableHeading = function() {
+  return '<tr><th>Frame</th><th>Roll</th><th>Pins</th><th>Frame score</th><th>Total score</th></tr>';
 };
 
 Message.prototype._printFrameScore = function(scorecard, frame, roll) {
