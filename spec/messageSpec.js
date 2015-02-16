@@ -8,17 +8,17 @@ describe("Message", function() {
     scorecard = new ScoreCard();
   });
 
-  it('displays the game status', function() {
-    message.addGameStatus(scorecard);
+  it('displays the frame status', function() {
+    message.addGameUpdate(scorecard, 'frameData');
     expect(container.html()).toEqual('Frame 1 Roll 1');
     scorecard.enterRoll(10);
-    message.addGameStatus(scorecard);
+    message.addGameUpdate(scorecard, 'frameData');
     expect(container.html()).toEqual('Frame 2 Roll 1');
   });
 
   it('displays the scorecard', function() {
     scorecard.enterRoll(10);
-    message.addTableData(scorecard);
+    message.addGameUpdate(scorecard, 'tableData');
     expect(container.html()).toEqual(
       '<tr><th>Frame</th><th>Roll</th><th>Pins</th><th>Frame score</th><th>Total score</th>' +
       '</tr><tr><td>1</td><td>1</td><td>10</td><td>10</td><td>10</td></tr>'

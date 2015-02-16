@@ -1,7 +1,7 @@
 var player = new Player();
 var scorecard = new ScoreCard(player);
-var gameStatus = new Message('#game_status');
-var tableData = new Message('#frames');
+var frameData = new Message('#frame_data');
+var tableData = new Message('#table_data');
 var gameMessage = new Message('#messages');
 
 var startGame = function() {
@@ -15,7 +15,7 @@ var startGame = function() {
 };
 
 var showGameLayout = function(name) {
-  gameStatus.addGameStatus(scorecard);
+  frameData.addGameUpdate(scorecard, 'frameData');
   $('#enter_name_form').css("display", "none");
   $('#welcome_message').html(name + "'s Bowling Scorecard");
   $('#pin_request').show();
@@ -66,8 +66,8 @@ var showAvailableNumbers = function() {
 
 var showGameMessages = function() {
   gameMessage.addGameMessage(scorecard);
-  tableData.addTableData(scorecard);
-  gameStatus.addGameStatus(scorecard);
+  tableData.addGameUpdate(scorecard, 'tableData');
+  frameData.addGameUpdate(scorecard, 'frameData');
   if (scorecard.isGameFinished()) {
     $('#pin_request').css("display", "none");
   }
