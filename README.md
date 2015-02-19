@@ -68,7 +68,7 @@ $ npm test
 - If the player rolls a strike or spare in the 10th frame they can roll the additional balls for the bonus. But they can never roll more than 3 balls in the 10th frame. The additional rolls only count for the bonus not for the regular frame count.
 - A Gutter Game is when the player never hits a pin (20 zero scores).
 - A Perfect Game is when the player rolls 12 strikes (10 regular strikes and 2 strikes for the bonus in the 10th frame). The Perfect Game scores 300 points.
-- Optional: Create a nice interactive animated interface with jQuery.
+- Optional: Create a nice interactive animated interface with JQuery.
 
 ## To do list
 
