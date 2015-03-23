@@ -73,6 +73,7 @@ $ npm test
 ## To do list
 
 - Refactor front end JQuery and message functions
+- Improve CSS
 
 ## Favourite Code Snippet
 
